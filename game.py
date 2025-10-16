@@ -24,6 +24,10 @@ class Character:
             self.health = 0
         print(f"{self.name} отримав {damage} шкоди! Здоров'я: {self.health}")
 
+    def attack_enemy(self, enemy):
+        enemy.take_damage(self.attack)
+        print(f"{self.name} атакує {enemy.name} на {self.attack} шкоди!")
+
 
 hero_1 = Character("Leonid")
 hero_1.show_stats()
