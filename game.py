@@ -64,9 +64,13 @@ def create_enemy(player_level):
 
 def battle(hero, enemy):
     print(f"\nРозпочався бій: {hero.name} VS {enemy.name}!")
+    print("-" * 40)
     hero.show_stats()
     enemy.show_stats()
+    print("-" * 40)
+    round_num = 1
     while True:
+        print(f"\n--- Раунд {round_num} ---")
         hero.attack_enemy(enemy)
         if not enemy.is_alive():
             break
@@ -77,6 +81,7 @@ def battle(hero, enemy):
             break
         else:
             input(f"\nНатисни Enter для продовження...")
+        round_num += 1
     if hero.is_alive():
         print(f"\nПеремога! {enemy.name} переможений!")
         hero.gain_experience(enemy.exp_reward)
