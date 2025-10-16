@@ -36,9 +36,13 @@ class Character:
             self.max_health += 20
             self.health = self.max_health
             self.attack += 5
+        print(f"{self.name} досяг рівня {self.level}!")
 
 
 hero_1 = Character("Leonid")
+enemy_1 = Character("Гоблін")
+hero_1.attack_enemy(enemy_1)
+enemy_1.show_stats()
 hero_1.show_stats()
 print(hero_1.is_alive())
 hero_1.take_damage(5)
