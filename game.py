@@ -13,9 +13,9 @@ class Character:
         self.experience = experience
 
     def show_stats(self):
-        print(f"Статистика персонажу:")
+        print("Character Stats:")
         print(
-            f"Ім'я: {self.name} Здоров'я: {self.health} Сила атаки: {self.attack} Рівень: {self.level} Досвід: {self.experience}"
+            f"Name: {self.name} | Health: {self.health} | Attack: {self.attack} | Level: {self.level} | Experience: {self.experience}"
         )
 
     def is_alive(self):
@@ -25,11 +25,11 @@ class Character:
         self.health -= damage
         if self.health < 0:
             self.health = 0
-        print(f"{self.name} отримав {damage} шкоди! Здоров'я: {self.health}")
+        print(f"{self.name} took {damage} damage! Remaining Health: {self.health}")
 
     def attack_enemy(self, enemy):
         enemy.take_damage(self.attack)
-        print(f"{self.name} атакує {enemy.name} на {self.attack} шкоди!")
+        print(f"{self.name} attacks {enemy.name} for {self.attack} damage!")
 
     def gain_experience(self, exp):
         self.experience += exp
@@ -39,14 +39,14 @@ class Character:
             self.max_health += 20
             self.health = self.max_health
             self.attack += 5
-            print(f"{self.name} досяг рівня {self.level}!")
+            print(f"{self.name} has reached level {self.level}!")
 
 
 def create_enemy(player_level):
     enemies = [
-        {"name": "Гоблін", "health": 30, "attack": 5, "exp": 20},
-        {"name": "Орк", "health": 50, "attack": 8, "exp": 35},
-        {"name": "Тролль", "health": 80, "attack": 12, "exp": 50},
+        {"name": "Goblin", "health": 30, "attack": 5, "exp": 20},
+        {"name": "Orc", "health": 50, "attack": 8, "exp": 35},
+        {"name": "Troll", "health": 80, "attack": 12, "exp": 50},
     ]
 
     enemy_template = random.choice(enemies)
@@ -63,33 +63,43 @@ def create_enemy(player_level):
 
 
 def battle(hero, enemy):
-    print(f"\nРозпочався бій: {hero.name} VS {enemy.name}!")
+    print(f"\nA battle begins: {hero.name} VS {enemy.name}!")
     print("-" * 40)
     hero.show_stats()
     enemy.show_stats()
     print("-" * 40)
+
     round_num = 1
-    while True:
-        print(f"\n--- Раунд {round_num} ---")
+    while hero.is_alive() and enemy.is_alive():
+        print(f"\n--- Round {round_num} ---")
+
+        # Hero's turn
         hero.attack_enemy(enemy)
         if not enemy.is_alive():
             break
-        else:
-            input(f"\nНатисни Enter для продовження...")
+
+        input("\nPress Enter to continue...")
+
+        # Enemy's turn
         enemy.attack_enemy(hero)
         if not hero.is_alive():
             break
-        else:
-            input(f"\nНатисни Enter для продовження...")
+
+        input("\nPress Enter to continue...")
         round_num += 1
+
     if hero.is_alive():
-        print(f"\nПеремога! {enemy.name} переможений!")
+        print(f"\nVictory! {enemy.name} has been defeated!")
         hero.gain_experience(enemy.exp_reward)
     else:
-        print(f"\nПоразка! {hero.name} загинув у бою...")
+        print(f"\nDefeat! {hero.name} has fallen in battle...")
 
 
-hero = Character("Воїн")
+# --- Game Start ---
+hero = Character("Warrior")
 enemy = create_enemy(hero.level)
+
 battle(hero, enemy)
+
+print("\n--- Final Stats ---")
 hero.show_stats()
