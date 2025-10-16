@@ -62,18 +62,29 @@ def create_enemy(player_level):
     return enemy
 
 
-"""hero = Character("Герой")
-for i in range(3):
-    enemy = create_enemy(hero.level)
+def battle(hero, enemy):
+    print(f"\nРозпочався бій: {hero.name} VS {enemy.name}!")
+    hero.show_stats()
     enemy.show_stats()
-    print(f"Нагорода: {enemy.exp_reward} досвіду\n")
-hero = Character("Герой")
+    while True:
+        hero.attack_enemy(enemy)
+        if not enemy.is_alive():
+            break
+        else:
+            input(f"\nНатисни Enter для продовження...")
+        enemy.attack_enemy(hero)
+        if not hero.is_alive():
+            break
+        else:
+            input(f"\nНатисни Enter для продовження...")
+    if hero.is_alive():
+        print(f"\nПеремога! {enemy.name} переможений!")
+        hero.gain_experience(enemy.exp_reward)
+    else:
+        print(f"\nПоразка! {hero.name} загинув у бою...")
+
+
+hero = Character("Воїн")
 enemy = create_enemy(hero.level)
-enemy.show_stats()
-hero_1 = Character("Leonid")
-enemy_1 = Character("Гоблін")
-hero_1.attack_enemy(enemy_1)
-enemy_1.show_stats()
-hero_1.show_stats()
-print(hero_1.is_alive())
-hero_1.take_damage(5)"""
+battle(hero, enemy)
+hero.show_stats()
