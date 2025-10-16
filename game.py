@@ -28,6 +28,15 @@ class Character:
         enemy.take_damage(self.attack)
         print(f"{self.name} атакує {enemy.name} на {self.attack} шкоди!")
 
+    def gain_experience(self, exp):
+        self.experience += exp
+        if self.experience >= 100:
+            self.level += 1
+            self.experience -= 100
+            self.max_health += 20
+            self.health = self.max_health
+            self.attack += 5
+
 
 hero_1 = Character("Leonid")
 hero_1.show_stats()
