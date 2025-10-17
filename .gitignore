@@ -1,23 +1,18 @@
 # ========================
 # 🐍 PYTHON
 # ========================
-# Кеш і скомпільовані файли
 __pycache__/
 *.py[cod]
 *$py.class
-# Віртуальні середовища
 venv/
 env/
 ENV/
 .venv/
 .virtualenv/
-# Логи
 *.log
-# Файли тестів та покриття
 .pytest_cache/
 .coverage
 htmlcov/
-# Файли Jupyter Notebook
 .ipynb_checkpoints
 # ========================
 # 🧰 VS CODE / IDE
@@ -27,21 +22,20 @@ htmlcov/
 *.sublime-workspace
 *.sublime-project
 # ========================
-# ⚙️ СИСТЕМНІ ФАЙЛИ
+# ⚙️ System Files
 # ========================
 .DS_Store
 Thumbs.db
 # ========================
-# 🔐 КОНФІДЕНЦІЙНІ ДАНІ
+# 🔐 Confidencial
 # ========================
 *.env
 *.secret
 *.key
 *.pem
 # ========================
-# 📦 ІНШЕ
+# 📦 Other
 # ========================
-# Якщо використовуєш build або dist
 build/
 dist/
 *.egg-info/

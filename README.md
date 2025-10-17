@@ -41,7 +41,3 @@ You need to have Python 3 installed on your system.
     python game.py
     ```
     (Assuming you named your file `game.py`)
-
-## 🎮 Gameplay Example
-
-Here is an example of what a battle looks like in the terminal:
